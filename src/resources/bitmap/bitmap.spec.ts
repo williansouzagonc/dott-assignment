@@ -36,4 +36,23 @@ describe('Bitmap', () => {
       }
     });
   });
+  describe('getDistanceFromNearestWhitePixel', () => {
+    it('return lowest distance from a white pixel', () => {
+      const bitmap = new Bitmap(1, 4);
+      const pixel1 = new Pixel(1, 1, 0);
+      const pixel2 = new Pixel(1, 2, 0);
+      const pixel3 = new Pixel(1, 3, 0);
+      const pixel4 = new Pixel(1, 4, 1);
+      
+      bitmap.addPixel(pixel1);
+      bitmap.addPixel(pixel2);
+      bitmap.addPixel(pixel3);
+      bitmap.addPixel(pixel4);
+      
+      expect(bitmap.getDistanceFromNearestWhitePixel(pixel1)).toBe(3);
+      expect(bitmap.getDistanceFromNearestWhitePixel(pixel2)).toBe(2);
+      expect(bitmap.getDistanceFromNearestWhitePixel(pixel3)).toBe(1);
+      expect(bitmap.getDistanceFromNearestWhitePixel(pixel4)).toBe(0);
+    });
+  });
 });

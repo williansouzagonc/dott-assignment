@@ -31,6 +31,20 @@ class Bitmap {
   public getPixelMap(): Pixel[] {
     return [ ...this._pixelMap ];
   }
+
+  public getDistanceFromNearestWhitePixel(fromPixel: Pixel): number {
+    if (fromPixel.isWhite()) {
+      return 0;
+    }
+
+    return this._pixelMap
+      .filter(pixel => pixel.isWhite())
+      .reduce((minValue, whitePixel) => {
+        const distance = Math.abs(whitePixel.getRowIndex() - fromPixel.getRowIndex()) + Math.abs(whitePixel.getColumnIndex() - fromPixel.getColumnIndex())
+        minValue = Math.min(minValue, distance);
+        return minValue;
+      }, Math.max(this._numberOfRows, this._numberOfColumns)); //distance will never be bigger than bitmap boundaries
+  }
 };
 
 export { Bitmap };

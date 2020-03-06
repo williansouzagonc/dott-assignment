@@ -37,11 +37,6 @@ import { once } from 'events';
       return;
     }
     
-    if (currentBitmapRow > currentBitmap.getNumberOfRows()) {
-      inputReader.write('Upcoming lines will be ignored for this bitmap cause it already reachs his maximum size');
-      return;
-    }
-
     const rowValues = currentLine.split("");
     
     rowValues.forEach((rowValue, index) => 
@@ -58,10 +53,13 @@ import { once } from 'events';
     for (let rowIndex = 1; rowIndex <= bitmap.getNumberOfRows(); rowIndex ++) {
       console.log(
         pixelMap
-          .filter(pixel => pixel.getRowIndex() === rowIndex)
-          .map(pixel => pixel.getValue())
-          .join(' ')
+          .filter(p => p.getRowIndex() === rowIndex)
+          .map((pixel) => {
+            return bitmap.getDistanceFromNearestWhitePixel(pixel);
+          })
+          .join('')
       );
     }
+    console.log("\n")
   });
 })();
