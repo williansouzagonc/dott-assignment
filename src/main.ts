@@ -26,7 +26,7 @@ import { once } from 'events';
           .map((pixel) => {
             return bitmap.getDistanceFromNearestWhitePixel(pixel);
           })
-          .join('')
+          .join(' ')
       );
     }
     console.log("\n")
