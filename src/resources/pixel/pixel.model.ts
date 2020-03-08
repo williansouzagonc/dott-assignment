@@ -8,7 +8,6 @@ class Pixel {
 
   constructor (rowIndex: number, columnIndex: number, value: number) {
     if (value !== 0 && value !== 1) {
-      console.log(value)
       throw new NonBinaryValueError();
     }
 

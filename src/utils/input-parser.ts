@@ -35,7 +35,7 @@ class InputParser {
     this._userInput += `-${inputLine}`;
   }
 
-  public getPlanInput(): string {
+  public getPlainInput(): string {
     return this._userInput;
   }
 
